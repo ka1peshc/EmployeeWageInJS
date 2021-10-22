@@ -129,3 +129,24 @@ empDailyHrsMap.forEach(  (value, key, map) => {
 console.log("Non Working Days "+nonWorkingDays);
 console.log("Part Working Days "+partWorkingDays);
 console.log("Full Working Days "+fullWorkingDays);
+
+
+//UC 10 Object Creation
+let totalEmpHrs = 0;
+totalWorkingdays = 0;
+let empDailyHrsAndWageArr = new Array();
+while (totalEmpHrs <= MAX_WORKING_HR && totalWorkingdays <= NO_OF_WORKING_DAYS){
+    totalWorkingdays++;
+    empCheck = Math.floor((Math.random()*10)%3);
+    empHrs = getWorkingHour(empCheck);
+    totalEmpHrs += empHrs;
+    empDailyHrsAndWageArr.push({
+        dayNum:totalWorkingdays,
+        dailyHours:empHrs,
+        dailyWage: calcDailyWage(empHrs),
+        toString(){
+            return '\nDay '+this.dayNum+' => working Hours is '+this.dailyHours+' And Wage Earned = '+this.dailyWage
+        }
+    });
+}
+console.log("UC 10 Showing daily hours worked and wage earned: "+empDailyHrsAndWageArr);

@@ -108,27 +108,27 @@ function totalDaysWorked(numOfDays, dailyWage){
 }
 console.log("UC 7G number of days emp worked "+empDailyWageArr.reduce(totalDaysWorked,0));
 
-//UC 9 Arrow function
-const findTotal = (totalVal, dailyVal) => totalVal + dailyVal;
+// //UC 9 Arrow function
+// const findTotal = (totalVal, dailyVal) => totalVal + dailyVal;
 
-let count = 0;
-let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal,0);
-let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0).reduce(findTotal,0)
-console.log("UC 9A Employee wage with arrow: Total Hours: "+totalHrs+" Total Wages "+totalSalary);
+// let count = 0;
+// let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal,0);
+// let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0).reduce(findTotal,0)
+// console.log("UC 9A Employee wage with arrow: Total Hours: "+totalHrs+" Total Wages "+totalSalary);
 
-let nonWorkingDays = new Array();
-let partWorkingDays = new Array();
-let fullWorkingDays = new Array();
+// let nonWorkingDays = new Array();
+// let partWorkingDays = new Array();
+// let fullWorkingDays = new Array();
 
-empDailyHrsMap.forEach(  (value, key, map) => {
-    if ( value == 8 ) fullWorkingDays.push(key);
-    else if ( value == 4 ) partWorkingDays.push(key);
-    else nonWorkingDays.push(key);
-});
+// empDailyHrsMap.forEach(  (value, key, map) => {
+//     if ( value == 8 ) fullWorkingDays.push(key);
+//     else if ( value == 4 ) partWorkingDays.push(key);
+//     else nonWorkingDays.push(key);
+// });
 
-console.log("Non Working Days "+nonWorkingDays);
-console.log("Part Working Days "+partWorkingDays);
-console.log("Full Working Days "+fullWorkingDays);
+// console.log("Non Working Days "+nonWorkingDays);
+// console.log("Part Working Days "+partWorkingDays);
+// console.log("Full Working Days "+fullWorkingDays);
 
 
 //UC 10 Object Creation
@@ -150,3 +150,24 @@ while (totalEmpHrs <= MAX_WORKING_HR && totalWorkingdays <= NO_OF_WORKING_DAYS){
     });
 }
 console.log("UC 10 Showing daily hours worked and wage earned: "+empDailyHrsAndWageArr);
+
+//UC 11 Object operation using Arrow function
+let totalWagess = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage>0)
+                .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
+let TotalHours = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours>0)
+                .reduce((totalHours, dailyHrsAndWage) => totalHours += dailyHrsAndWage.dailyHours,0);
+console.log("UC 11A Total hours "+TotalHours+" Total Wages : "+totalWagess);
+
+console.log("UC 11B Loggin full working days");
+empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8).
+forEach(dailyHrsAndWage => console.log(dailyHrsAndWage.toString()));
+
+let partWorkingDayStrArr = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 4).
+forEach(dailyHrsAndWage => dailyHrsAndWage.toString());
+console.log("\nUC 11C part time working string "+partWorkingDayStrArr);
+
+let nonworkingDayStrArr = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 0)
+.forEach(dailyHrsAndWage => dailyHrsAndWage.toString());
+console.log("\nUC 11D No working days "+nonworkingDayStrArr);
+
+
